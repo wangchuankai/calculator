@@ -1,0 +1,1 @@
+<view class="mybattery"><view class="container"><view class="header"></view><view class="battery"></view><view class="battery-copy"><view class="g-wave"></view><view class="g-wave"></view><view class="g-wave"></view></view></view></view>

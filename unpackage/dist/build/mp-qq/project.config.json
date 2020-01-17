@@ -1,0 +1,45 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true,
+		"remoteDebugLogEnable": false,
+		"uploadWithSourceMap": true,
+		"nodeModules": true,
+		"autoAudits": true,
+		"uglifyFileName": true
+	},
+	"compileType": "miniprogram",
+	"projectname": "时间计算器",
+	"qqappid": "1110124233",
+	"qqLibVersion": "1.6.3",
+	"scripts": {
+		"beforeCompile": "",
+		"beforePreview": "",
+		"beforeUpload": ""
+	},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": []
+		}
+	}
+}

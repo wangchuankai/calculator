@@ -1,0 +1,54 @@
+.DS_Store
+node_modules
+/dist
+/dist-c
+
+# 忽略 crm打包文件
+/crm_dist
+/crm_dist_c
+
+# 忽略 ucp打包文件
+
+/ucp_dist
+/ucp_dist_c
+
+# 忽略 csp打包文件
+
+/csp_dist
+/csp_dist_c
+
+# 忽略 bi打包文件
+
+/bi_dist
+/bi_dist_c
+
+# 忽略 运营系统打包文件
+
+/omp_dist
+/omp_dist_c
+
+
+package-lock.json
+
+/tests/e2e/videos/
+/tests/e2e/screenshots/
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+build/env.js

@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"myindex{ position: relative; height: 98vh; }\n.",[1],"mytitle { margin: ",[0,20],"; }\n.",[1],"myprimary{ padding-top: ",[0,40],"; }\n.",[1],"resNum{ padding-left: ",[0,20],"; }\n.",[1],"adbanner{ position: absolute; width: 100%; height: ",[0,200],"; bottom: 0; }\n",],undefined,{path:"./pages/index/index.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/index/index.wxml') } }));
