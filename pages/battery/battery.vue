@@ -1,133 +1,210 @@
 <template>
-	<view class="mybattery">
-		<view class="container">
-		    <view class="header"></view> 
-		    <view class="battery">
-		    </view>
-		    <view class="battery-copy">
-		        <view class="g-wave"></view>
-		        <view class="g-wave"></view>
-		        <view class="g-wave"></view>
-		    </view>
+	<view class="box">
+		<view class="mytab">
+			<view class="tabItem" :class="[ite==activeItem?'activeTab':'']" v-for="(ite,index) in tabList" :key="index" @click="tabClick(ite)">
+				{{ite}}
+			</view>
 		</view>
-
+		<view class="title" v-if="countMoth">
+			{{activeItem}}{{activeItem!=="我的"?"的":''}}人生进度：一共{{countMoth}}个月(每个小格代表一个月)，已度过{{usemoth===0?"0":usemoth}}个月（黄色部分）
+		</view>
+		<view class="myBox" v-if="countMoth">
+			<view class="item" :class="'item'+item" v-for="(item ,i) in myTotallist" :key="i">
+				
+			</view>
+		</view>
+		<view class="massage" v-if="!countMoth">
+			<image src="../../static/kong.png" mode="" style="width: 200px; height: 200px;margin: 0 auto;display: block;"></image>
+			<view class="txt" style="text-align: center;">
+				请完善" 我的 "页面信息后查看
+			</view>
+		</view>
+		<!-- <button type="default" class="normalbtn" @click="addClick">看到了点击一下吧</button> -->
+		<!-- <view class="adbanner">
+			<ad unit-id="3bb05f156229fef740d3c963b0b0d538"></ad>
+		</view> -->
 	</view>
 </template>
 
 <script>
 	export default {
-		
+		data(){
+			return {
+				info:{},
+				myTotallist:[],
+				tabList:['我的','父亲','母亲'],
+				activeItem:"我的",
+				countMoth:'',
+				usemoth:""
+			}
+		},
+		created() {
+			
+		},
+		mounted() {
+			
+		},
+		methods:{
+			addClick(){
+				var videoAd = qq.createRewardedVideoAd({              adUnitId: "d94113774bb178db9455e159ecfd94fe"})
+				videoAd.onError(function(res){              console.log('videoAd onError',res)})            
+				videoAd.onLoad(function(res){              console.log('videoAd onLoad',res)})            
+				videoAd.onClose(function(res){              console.log('videoAd onClose',res)})                        
+				videoAd.load().then(() => {                console.log('激励视频加载成功');                
+				videoAd.show().then(() => {                  console.log('激励视频 广告显示成功')})                
+				.catch(err => {                  console.log('激励视频 广告显示失败')})})              
+				.catch(err => {                console.log('激励视频加载失败')})    
+			},
+			tabClick(ite){
+				this.activeItem=ite;
+				this.myTotallist=[];
+				if(ite==="我的"){
+					if(this.info && this.info.my && this.info.my.total){
+						let mytotal= this.info.my.total;
+						let myuse= this.info.my.use;
+						for (let i=1;i<=mytotal;i++) {
+							if(i<=myuse){
+								this.myTotallist.push(2)
+							}else{
+								this.myTotallist.push(1)
+							}
+						};
+						this.countMoth=this.info.my.total;
+						this.usemoth=this.info.my.use;
+					}else{
+						this.countMoth=0;
+					}
+					
+				}else if(ite==="父亲"){
+					if(this.info && this.info.father && this.info.father.total){
+						let mytotal= this.info.father.total;
+						let myuse= this.info.father.use;
+						for (let i=1;i<=mytotal;i++) {
+							if(i<=myuse){
+								this.myTotallist.push(2)
+							}else{
+								this.myTotallist.push(1)
+							}
+						};
+						this.countMoth=this.info.father.total;
+						this.usemoth=this.info.father.use;
+					}else{
+						this.countMoth=0;
+					}
+				}else{
+					if(this.info && this.info.mother && this.info.mother.total){
+						let mytotal= this.info.mother.total;
+						let myuse= this.info.mother.use;
+						for (let i=1;i<=mytotal;i++) {
+							if(i<=myuse){
+								this.myTotallist.push(2)
+							}else{
+								this.myTotallist.push(1)
+							}
+						};
+						this.countMoth=this.info.mother.total;
+						this.usemoth=this.info.mother.use;
+					}else{
+						this.countMoth=0;
+					}
+					
+				}
+			}	
+			
+		},
+		onShow() {
+			this.activeItem="我的";
+			this.myTotallist=[];
+			this.info = uni.getStorageSync("info");
+			if(this.info && this.info.my && this.info.my.total){
+				let mytotal= this.info.my.total;
+				let myuse= this.info.my.use;
+				for (let i=1;i<=mytotal;i++) {
+					if(i<=myuse){
+						this.myTotallist.push(2)
+					}else{
+						this.myTotallist.push(1)
+					}
+				};
+				this.countMoth=this.info.my.total;
+				this.usemoth=this.info.my.use;
+			};
+			uni.showShareMenu({
+				withShareTicket:true,
+				title:"时间计算器",
+				content:"计算时间间隔、计算年龄，查看人生进度，快来使用吧",
+				path:"pages/index/index",
+				success(res){
+					console.log(res);
+				}
+			});
+		}
 	}
 </script>
 
-<style lang="scss">
-.mybattery {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    background: #e4e4e4;
+<style scoped>
+.box{
+	padding: 16px;
+}
+	
+.mytab{
+	display: flex;
+	flex-wrap: nowrap;
+}
+	
+.tabItem{
+	flex: 1;
+	text-align: center;
+	padding: 8px;
+	border: #ccc 1px solid;
+}
+	
+.tabItem:nth-of-type(2){
+	border-left: none;
+	border-right: none;
+}
+	
+.activeTab{
+	background: #1aad19;
+	color: #fff;
+}
+.myBox{
+	display: flex;
+	flex-wrap: wrap;
+	border: #ccc 1px solid;
+	border-right: none;
+	border-bottom: none;
 }
 
-.container {
-    position: relative;
-    width: 140px;
-    margin: auto;
+.item{
+	width: 10px;
+	height: 10px;
+	border: #ccc 1px solid;
+	border-left: none;
+	border-top: none;
+	background: #DDDDDD;
 }
-
-.header {
-    position: absolute;
-    width: 26px;
-    height: 10px;
-    left: 50%;
-    top: 0;
-    transform: translate(-50%, -10px);
-    border-radius: 5px 5px 0 0;
-    background: rgba(255, 255, 255, .88);
+.item2{
+	width: 10px;
+	height: 10px;
+	border: #ccc 1px solid;
+	border-left: none;
+	border-top: none;
+	background: #ffff7f;
 }
-
-.battery-copy {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 220px;
-    width: 140px;
-    border-radius: 15px 15px 5px 5px;
-    overflow: hidden;
+.normalbtn{
+	border: #ccc 1px solid;
+	margin-top: 16px;
+	font-size: 16px;
 }
-
-.battery {
-    position: relative;
-    height: 220px;
-    box-sizing: border-box;
-    border-radius: 15px 15px 5px 5px;
-    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.22);
-    background: #fff;
-    z-index: 1;
-    
-    &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0%;
-		
-        background: linear-gradient(to bottom, #7abcff 0%, #00BCD4 44%, #2196F3 100%);
-        // border-radius: 0px 0px 5px 5px;
-		border-radius: 15px 15px 5px 5px;
-        box-shadow: 0 14px 28px rgba(33, 150, 243, 0), 0 10px 10px rgba(9, 188, 215, 0.08);
-        // animation: charging 10s linear infinite;
-        // filter: hue-rotate(90deg);
-    }
+.adbanner{
+	/* position: absolute; */
+	width: 100%;
+	height: 200upx;
+	margin-top: 40px;
+	/* bottom: 0; */
 }
-
-.g-wave {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: rgba(255, 255, 255, .8);
-    border-radius: 45% 47% 44% 42%;
-    bottom: 25px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    z-index: 1;
-    animation: move 5s linear infinite;
-}
-
-.g-wave:nth-child(2) {
-    border-radius: 38% 46% 43% 47%;
-    transform: translate(-50%, 0) rotate(-135deg);
-}
-
-.g-wave:nth-child(3) {
-    border-radius: 42% 46% 37% 40%;
-    transform: translate(-50%, 0) rotate(135deg);
-}
-
-@keyframes charging {
-	50% {
-        box-shadow: 0 14px 28px rgba(0, 150, 136, 0.83), 0px 4px 10px rgba(9, 188, 215, 0.4);
-    }
-    
-    95% {
-        top: 5%;
-        filter: hue-rotate(0deg);
-        border-radius: 0 0 5px 5px;
-        box-shadow: 0 14px 28px rgba(4, 188, 213, .2), 0 10px 10px rgba(9, 188, 215, 0.08);
-    }
-    100% {
-        top: 0%;
-        filter: hue-rotate(0deg);
-        border-radius: 15px 15px 5px 5px;
-        box-shadow: 0 14px 28px rgba(4, 188, 213, 0), 0 10px 10px rgba(9, 188, 215, 0.4);
-    }
-}
-
-@keyframes move {
-    100% {
-        transform: translate(-50%, 220px) rotate(720deg);
-    }
-}
-
-
+/* .item:nth-of-type(26n+1){
+	border-left: #ccc 1px solid;
+} */
 </style>

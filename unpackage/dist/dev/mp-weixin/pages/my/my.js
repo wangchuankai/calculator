@@ -138,136 +138,176 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 36));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {var currentDate = this.getDate({ format: true });return { my_date: "", father_date: "", mother_date: "", age: '', isDis: true, info: { my: { total: 0, use: '' }, father: { total: 0, use: '' }, mother: { total: 0, use: '' } } };}, computed: { startDate: function startDate() {return this.getDate('start');}, endDate: function endDate() {return this.getDate('end');} }, methods: { // addClick(){
+    // 	var videoAd = qq.createRewardedVideoAd({              adUnitId: "d94113774bb178db9455e159ecfd94fe"})
+    // 	videoAd.onError(function(res){              console.log('videoAd onError',res)})            
+    // 	videoAd.onLoad(function(res){              console.log('videoAd onLoad',res)})            
+    // 	videoAd.onClose(function(res){              console.log('videoAd onClose',res)})                        
+    // 	videoAd.load().then(() => {                console.log('激励视频加载成功');                
+    // 	videoAd.show().then(() => {                  console.log('激励视频 广告显示成功')})                
+    // 	.catch(err => {                  console.log('激励视频 广告显示失败')})})              
+    // 	.catch(err => {                console.log('激励视频加载失败')})    
+    // },
+    getIsDis: function getIsDis() {if (this.my_date && this.age) {return false;} else {return true;}}, count: function count() {if ((this.mother_date || this.father_date) && (this.my_date <= this.father_date || this.my_date <= this.mother_date)) {uni.showToast({ icon: "none", title: "我的出生日期不能早于父母或者相同", mask: true, duration: 2000 });return;}
+      if (this.age > 150) {
+        uni.showToast({
+          icon: "none",
+          title: "年龄最多不可超过150岁",
+          mask: true,
+          duration: 2000 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 36));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}
-var mons = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-function isLeapYear(year) {
-  var r = year / 100;
-  if (r === parseInt(r)) {
-    r = year / 400;
-    return r === parseInt(r);
-  }
-  r = year / 4;
-  if (r === parseInt(r)) {
-    return true;
-  }
-  return false;
-}
-
-function getDaysOfMonth(month, year) {
-  if (month === 2 && isLeapYear(year)) {
-    return 29;
-  }
-  return mons[month];
-}
-
-function mydiff(s1, s2) {
-  var arr1 = s1.split('-').map(Number);
-  var arr2 = s2.split('-').map(Number);var _arr2$map =
-  arr2.map(function (n, i) {return n - arr1[i];}),_arr2$map2 = _slicedToArray(_arr2$map, 3),year = _arr2$map2[0],month = _arr2$map2[1],day = _arr2$map2[2];
-
-  if (day < 0) {
-    day += getDaysOfMonth(arr2[1], arr2[0]);
-    month--;
-  }
-  if (month < 0) {
-    month += 12;
-    year--;
-  }
-  return [year, month, day];
-}var _default =
-{
-  data: function data() {
-    var currentDate = this.getDate({
-      format: true });
-
-    return {
-      start_date: "",
-      end_date: currentDate,
-      isDis: true,
-      year: '',
-      month: '',
-      day: '',
-      countY: "",
-      countM: "",
-      countD: "",
-      showmsg: false,
-      showmsg1: false };
-
-  },
-  computed: {
-    startDate: function startDate() {
-      return this.getDate('start');
-    },
-    endDate: function endDate() {
-      return this.getDate('end');
-    } },
-
-  methods: {
-    count: function count() {
-      if (this.start_date === this.end_date) {
-        this.showmsg = true;
-        this.showmsg1 = false;
-      } else {
-        this.showmsg = false;
-        if (new Date(this.end_date) - new Date(this.start_date) < 0) {
-          this.showmsg1 = true;
-        } else {
-          this.showmsg1 = false;
-        }
-
+        return;
       }
-      var date = mydiff(this.start_date, this.end_date);
-      this.year = date[0];
-      this.month = date[1];
-      this.day = date[2];
-      var date2 = (0, _dayjs.default)(this.start_date);
-      var date1 = (0, _dayjs.default)(this.end_date);
-      this.countY = date1.diff(date2, 'year', true);
-      this.countM = date1.diff(date2, 'month', true);
-      this.countD = date1.diff(date2, 'day');
+
+
+
+      var date2 = (0, _dayjs.default)(this.my_date);
+      var date1 = (0, _dayjs.default)(new Date());
+      var useMonth = parseInt(date1.diff(date2, 'month', true));
+      var totalMoth = this.age * 12;
+      if (this.father_date) {
+        var usefatherMonth = parseInt(date1.diff((0, _dayjs.default)(this.father_date), 'month', true));
+        if (totalMoth < usefatherMonth) {
+          uni.showToast({
+            icon: "none",
+            title: "期望年龄不可小于父亲当前年龄",
+            mask: true,
+            duration: 3000 });
+
+          return;
+        }
+      }
+      if (this.mother_date) {
+        var usemotherMonth = parseInt(date1.diff((0, _dayjs.default)(this.mother_date), 'month', true));
+        if (totalMoth < usemotherMonth) {
+          uni.showToast({
+            icon: "none",
+            title: "期望年龄不可小于母亲当前年龄",
+            mask: true,
+            duration: 3000 });
+
+          return;
+        }
+      }
+
+      if (totalMoth < useMonth) {
+        uni.showToast({
+          icon: "none",
+          title: "期望年龄不可小于父母当前年龄",
+          mask: true,
+          duration: 3000 });
+
+        return;
+      }
+      this.info.my = {
+        total: totalMoth,
+        use: useMonth };
+
+      if (this.father_date) {
+        var _date = (0, _dayjs.default)(this.father_date);
+        var _date2 = (0, _dayjs.default)(new Date());
+        var _useMonth = parseInt(_date2.diff(_date, 'month', true));
+        var _totalMoth = this.age * 12;
+        this.info.father = {
+          total: _totalMoth,
+          use: _useMonth };
+
+      };
+      if (this.mother_date) {
+        var _date3 = (0, _dayjs.default)(this.mother_date);
+        var _date4 = (0, _dayjs.default)(new Date());
+        var _useMonth2 = parseInt(_date4.diff(_date3, 'month', true));
+        var _totalMoth2 = this.age * 12;
+        this.info.mother = {
+          total: _totalMoth2,
+          use: _useMonth2 };
+
+      };
+
+      uni.setStorageSync('my_date', this.my_date);
+      uni.setStorageSync('father_date', this.father_date);
+      uni.setStorageSync('mother_date', this.mother_date);
+      uni.setStorageSync('age', this.age);
+
+      uni.setStorageSync('info', this.info);
+      uni.showToast({
+        title: "保存成功,即将跳转人生进度页面",
+        icon: "none",
+        mask: true,
+        duration: 2000 });
+
+      uni.switchTab({
+        url: "../battery/battery" });
+
     },
 
-    bindStartDateChange: function bindStartDateChange(e) {
-
-      this.start_date = e.target.value;
-      this.isDis = false;
+    bindMyDateChange: function bindMyDateChange(e) {
+      this.my_date = e.target.value;
+      this.isDis = this.getIsDis();
+      console.log(this.isDis);
     },
-    bindEndDateChange: function bindEndDateChange(e) {
-      this.end_date = e.target.value;
+    bindFatherDateChange: function bindFatherDateChange(e) {
+      this.father_date = e.target.value;
+    },
+    bindmotherDateChange: function bindmotherDateChange(e) {
+      this.mother_date = e.target.value;
+    },
+    bindAgeChange: function bindAgeChange(e) {
+      this.age = e.target.value;
+      this.isDis = this.getIsDis();
     },
     getDate: function getDate(type) {
       var date = new Date();
@@ -286,15 +326,40 @@ function mydiff(s1, s2) {
     } },
 
   onShow: function onShow() {
+    this.info = uni.getStorageSync("info");
+    console.log(this.info);
+    if (this.info && this.info.my && this.info.my.total) {
+      this.my_date = uni.getStorageSync('my_date');
+      this.father_date = uni.getStorageSync('father_date');
+      this.mother_date = uni.getStorageSync('mother_date');
+      this.age = uni.getStorageSync('age');
+      this.isDis = false;
+    } else {
+      this.info = {
+        my: {
+          total: 0,
+          use: '' },
+
+        father: {
+          total: 0,
+          use: '' },
+
+        mother: {
+          total: 0,
+          use: '' } };
+
+
+    };
     uni.showShareMenu({
       withShareTicket: true,
       title: "时间计算器",
-      content: "计算时间间隔、计算年龄，快来使用吧",
+      content: "计算时间间隔、计算年龄，查看人生进度，快来使用吧",
       path: "pages/index/index",
       success: function success(res) {
         console.log(res);
       } });
 
+    console.log(getApp().globalData);
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -25,6 +25,7 @@
 		</view>
 		<view class="myprimary">
 			<button type="primary" @click="count" :disabled="isDis">计算</button>
+			<!-- <button type="default" class="normalbtn" @click="addClick">不要点击这个按钮</button> -->
 		</view>
 		<view class="result">
 			<view class="mytitle" v-if="showmsg">
@@ -60,9 +61,9 @@
 				</view>
 			</view>
 		</view>
-		<view class="adbanner">
-			<!-- <ad unit-id="3bb05f156229fef740d3c963b0b0d538"></ad> -->
-		</view>
+		<!-- <view class="adbanner">
+			<ad unit-id="3bb05f156229fef740d3c963b0b0d538"></ad>
+		</view> -->
 	</view>
 </template>
 
@@ -148,6 +149,16 @@
 			}
 		},
 		methods: {
+			// addClick(){
+			// 	var videoAd = qq.createRewardedVideoAd({              adUnitId: "d94113774bb178db9455e159ecfd94fe"})
+			// 	videoAd.onError(function(res){              console.log('videoAd onError',res)})            
+			// 	videoAd.onLoad(function(res){              console.log('videoAd onLoad',res)})            
+			// 	videoAd.onClose(function(res){              console.log('videoAd onClose',res)})                        
+			// 	videoAd.load().then(() => {                console.log('激励视频加载成功');                
+			// 	videoAd.show().then(() => {                  console.log('激励视频 广告显示成功')})                
+			// 	.catch(err => {                  console.log('激励视频 广告显示失败')})})              
+			// 	.catch(err => {                console.log('激励视频加载失败')})    
+			// },
 			count(){
 				if(this.start_date === this.end_date){
 					this.showmsg = true;
@@ -230,5 +241,10 @@
 	width: 100%;
 	height: 200upx;
 	bottom: 0;
+}
+.normalbtn{
+	border: #ccc 1px solid;
+	margin-top: 16px;
+	font-size: 16px;
 }
 </style>

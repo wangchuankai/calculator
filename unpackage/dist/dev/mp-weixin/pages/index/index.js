@@ -202,6 +202,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 36));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}
 var mons = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -283,6 +284,16 @@ var _default =
     } },
 
   methods: {
+    // addClick(){
+    // 	var videoAd = qq.createRewardedVideoAd({              adUnitId: "d94113774bb178db9455e159ecfd94fe"})
+    // 	videoAd.onError(function(res){              console.log('videoAd onError',res)})            
+    // 	videoAd.onLoad(function(res){              console.log('videoAd onLoad',res)})            
+    // 	videoAd.onClose(function(res){              console.log('videoAd onClose',res)})                        
+    // 	videoAd.load().then(() => {                console.log('激励视频加载成功');                
+    // 	videoAd.show().then(() => {                  console.log('激励视频 广告显示成功')})                
+    // 	.catch(err => {                  console.log('激励视频 广告显示失败')})})              
+    // 	.catch(err => {                console.log('激励视频加载失败')})    
+    // },
     count: function count() {
       if (this.start_date === this.end_date) {
         this.showmsg = true;

@@ -100,12 +100,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     console.log('App Launch');
   },
   onShow: function onShow() {
-    //         let videoAd = qq.createRewardedVideoAd({              adUnitId: "d94113774bb178db9455e159ecfd94fe"            });           
-    // videoAd.onError(function(res){              console.log('videoAd onError',res)            })            
-    // videoAd.onLoad(function(res){              console.log('videoAd onLoad',res)            })            
-    // videoAd.onClose(function(res){              console.log('videoAd onClose',res)            })                        
-    // videoAd.load()              .then(() => {                console.log('激励视频加载成功');                
-    // videoAd.show().then(() => {                  console.log('激励视频 广告显示成功')                })                .catch(err => {                  console.log('激励视频 广告显示失败')                })              })              .catch(err => {                console.log('激励视频加载失败');              })              
+    console.log('App show');
   },
   onHide: function onHide() {
     console.log('App Hide');

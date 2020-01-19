@@ -18,4 +18,9 @@
 	height: 200rpx;
 	bottom: 0;
 }
+.normalbtn{
+	border: #ccc 1px solid;
+	margin-top: 16px;
+	font-size: 16px;
+}
 
